@@ -1,17 +1,17 @@
 import { IUser } from "./types";
 
 export function setUserLocalStorage(user: IUser | null) {
-    localStorage.setItem('user', JSON.stringify(user));
+	localStorage.setItem("user", JSON.stringify(user));
 }
 
 export function getUserLocalStorage() {
-    const json = localStorage.getItem('user');
+	const json = localStorage.getItem("user");
 
-    if(!json) {
-        return null;
-    }
+	if(!json) {
+		return null;
+	}
 
-    const user = JSON.parse(json);
+	const user = JSON.parse(json);
 
-    return user ?? null;
+	return user ?? null;
 }
