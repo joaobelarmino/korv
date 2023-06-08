@@ -29,6 +29,8 @@ const Login: React.FC = () => {
             <Title>Bem-vindo ao <strong>Cypher</strong></Title>
             <Subtitle>Otimize seu tempo de forma segura e objetiva.</Subtitle>
             <Form onSubmit={onSubmit}>
+                {/* TODO: Align with @Samuel if we should use pronctuary as label and ids, or just login or something
+                more generic. */}
                 <InputText
                     id="pronctuary-login"
                     value={email}
