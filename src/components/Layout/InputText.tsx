@@ -1,6 +1,6 @@
-import React from 'react';
+import React from "react";
 
-import { Input } from './styles';
+import { Input } from "./styles";
 
 type InputProps = {
     type?: "text" | "password" | "email" | "search",
@@ -12,7 +12,7 @@ type InputProps = {
 }
 
 const InputText = ({type = "text", id, name, placeholder, onChange}: InputProps) => {
-  return <Input type={type} id={id} name={name} placeholder={placeholder} onChange={onChange}/>;
-}
+	return <Input type={type} id={id} name={name} placeholder={placeholder} onChange={onChange}/>;
+};
 
 export default InputText;
