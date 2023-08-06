@@ -1,7 +1,9 @@
 module.exports = {
 	"env": {
 		"browser": true,
-		"es2021": true
+		"es2021": true,
+		"amd": true,
+		"node": true
 	},
 	"extends": [
 		"eslint:recommended",
@@ -35,6 +37,9 @@ module.exports = {
 		"semi": [
 			"error",
 			"always"
-		]
+		],
+		"newline-before-return": "error",
+		"newline-after-var": ["error", "always"],
+		"no-duplicate-imports": "error"
 	}
 };

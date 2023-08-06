@@ -3,27 +3,41 @@ import "styled-components";
 declare module "styled-components" {
     export interface DefaultTheme {
         colors: {
+			dark: {
+				black: string
+			},
             white: {
-                background: string,
-                bluish: string,
+                default: string,
             },
             primary: {
-                lighter: string,
+				dark: string,
                 main: string,
-                dark: string,
+                medium: string,
+                light: string,
+                lighter: string,
             },
             green: {
+				darker: string,
                 main: string,
-                secondary: string,
+				medium: string,
+				light: string,
                 lighter: string,
+				background: string
             },
             danger: {
-                light: string,
-                main: string,
                 darker: string,
+                main: string,
+				medium: string,
+                light: string,
+				lighter: string,
+				background: string
             },
             gray: {
-                main: string
+				darker: string,
+				dark: string,
+				medium: string,
+				light: string,
+				lighter: string,
             },
         }
     }

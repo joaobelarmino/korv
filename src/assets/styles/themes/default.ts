@@ -1,26 +1,40 @@
 export default {
 	colors: {
 		white: {
-			background: "#EFF3F6",
-			bluish: "#DEEAF0",
+			default: "#F2F2F8",
+		},
+		dark: {
+			black: "#18181B",
 		},
 		primary: {
-			lighter: "#ACC8D2",
-			main: "#74A2B4",
-			dark: "#3F849F",
+			dark: "#6250ED",
+			main: "#7667E9",
+			medium: "#C0B8FF",
+			light: "#E1DEFD",
+			lighter: "#FDFAFF",
 		},
 		green: {
-			main: "#339643",
-			secondary: "#0BD52C",
-			lighter: "#99FAA9",
+			darker: "#287734",
+			main: "#0BD52C",
+			medium: "#55F66F",
+			light: "#86F998",
+			lighter: "#ADFBB9",
+			background: "#F0FFF2",
 		},
 		danger: {
-			light: "#FA9999",
-			main: "#DB0000",
-			darker: "#F42525",
+			darker: "#7E1616",
+			main: "#BA2121",
+			medium: "#DE4545",
+			light: "#E67070",
+			lighter: "#ED9B9B",
+			background: "#FFF0F0",
 		},
 		gray: {
-			main: "#BDC7CB"
+			darker: "#36353B",
+			dark: "#4E4E56",
+			medium: "#676670",
+			light: "#9A99A3",
+			lighter: "#E6E6E6",
 		},
 	},
 };
