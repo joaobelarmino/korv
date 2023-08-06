@@ -8,6 +8,10 @@ export default createGlobalStyle`
     font-family: 'Jost', sans-serif;
   }
 
+  :root {
+	font-size: 16px;
+  }
+
   html,
   body,
   #root {
@@ -15,7 +19,7 @@ export default createGlobalStyle`
   }
 
   body {
-    background-color: ${({ theme }) => theme.colors.white.background};
+    background-color: ${({ theme }) => theme.colors.white.default};
     font-size: 16px;
   }
 

@@ -29,7 +29,7 @@ export default class HttpClient {
 			return body;
 		}
 
-		throw new Error(body);
+		throw new Error(body.error);
 	}
 
 	async get(path: string) {
