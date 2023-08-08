@@ -52,7 +52,7 @@ export const Contacts = styled.div`
 		display: flex;
 		align-items: center;
 		img {
-			margin-right: 8px;
+			margin-right: 0.5rem;
 		}
 	}
 
