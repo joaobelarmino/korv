@@ -20,8 +20,8 @@ export const Title = styled.h1`
         background: linear-gradient(
             to right,
             ${({ theme }) => theme.colors.primary.dark } 0%,
-            ${({ theme }) => theme.colors.primary.medium } 65%,
-            ${({ theme }) => theme.colors.primary.main } 100%);
+            ${({ theme }) => theme.colors.primary.main } 65%,
+            ${({ theme }) => theme.colors.primary.medium } 100%);
         -webkit-background-clip: text;
         -webkit-text-fill-color: transparent;
     }

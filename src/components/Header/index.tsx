@@ -13,7 +13,7 @@ const Header: React.FC = () => {
 	const [ shouldHandleClick, setShouldHandleClick ] = useState<boolean>(true);
 	const [ isMobile, setIsMobile ] = useState<boolean>(window.innerWidth <= 767);
 	const dropdownRef = useRef<HTMLDivElement>(null);
-	const auth = useAuth();
+	const { logout } = useAuth();
 
 	function handleHeaderClick() {
 		if (shouldHandleClick) {
@@ -73,7 +73,7 @@ const Header: React.FC = () => {
 					<UserIcon />
 					<LabelItem>Minha conta</LabelItem>
 				</MenuItem>
-				<MenuItem to="/login" onClick={auth.logout}>
+				<MenuItem to="/login" onClick={logout}>
 					<ExitIcon />
 					<LabelItem>Sair</LabelItem>
 				</MenuItem>

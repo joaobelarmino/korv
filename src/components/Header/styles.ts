@@ -37,7 +37,7 @@ export const HamburguerIcon = styled.button`
 		transition: all ease-in-out 400ms;
 		width: 2rem;
 		height: 0.25rem;
-		background: #000;
+		background: ${({theme}) => theme.colors.dark.black};
 		border-radius: 1rem;
 	}
 
