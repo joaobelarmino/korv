@@ -1,18 +1,28 @@
-import React from "react";
+import React, { FunctionComponent, SVGProps } from "react";
 import Lottie from "react-lottie";
 import spinnerPrimary from "../../../assets/lotties/spinner__white.json";
-import spinnerSecondary from "../../../assets/lotties/spinner__purple.json";
 
 import { Button as SButton } from "./styles";
 
 interface ButtonProps {
-	text: string;
+	text?: string;
 	type?: "button" | "submit" | "reset";
+	variant?: "primary" | "secondary";
+	isFullWidth?: boolean;
+	icon?: FunctionComponent<SVGProps<SVGSVGElement>>;
 	isLoading?: boolean;
 	onClick?: React.MouseEventHandler;
 }
 
-const Button = ({text, type = "button", isLoading = false, onClick}: ButtonProps) => {
+const Button = ({
+	text,
+	type = "button",
+	variant = "primary",
+	isFullWidth = false,
+	icon: Icon,
+	isLoading = false,
+	onClick
+}: ButtonProps) => {
 	const defaultOptions = {
 		loop: true,
 		autoplay: true,
@@ -23,13 +33,14 @@ const Button = ({text, type = "button", isLoading = false, onClick}: ButtonProps
 	};
 
 	return (
-		<SButton onClick={onClick} type={type}>
+		<SButton onClick={onClick} type={type} $variant={variant} $fullWidth={isFullWidth}>
 			{isLoading ? (
 				<Lottie options={defaultOptions} height={64} width={64} />
-			): (
-				<span>
-					{text}
-				</span>
+			) : (
+				<>
+					{Icon && (<Icon />)}
+					{text && (<span>{text}</span>)}
+				</>
 			)}
 		</SButton>
 	);

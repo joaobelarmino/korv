@@ -1,6 +1,8 @@
 import { styled } from "styled-components";
 
-export const Container = styled.div`
+export const Container = styled.div<{ $fullWidth?: boolean }>`
+	width: ${props => props.$fullWidth ? "100%" : "auto"};
+
     & + & {
         margin-top: 32px;
     }
@@ -8,7 +10,7 @@ export const Container = styled.div`
 
 export const InputWrapper = styled.div`
 	position: relative;
-	border: 2px solid ${({ theme }) => theme.colors.primary.light};
+	border: 2px solid ${({ theme }) => theme.colors.primary.main};
     background-color: ${({ theme }) => theme.colors.primary.lighter};
     border-radius: 4px;
     height: 64px;
@@ -57,6 +59,7 @@ export const Input = styled.input`
 			font-size: 14px;
 			line-height: 16px;
 			font-weight: 500;
+			color: ${({ theme }) => theme.colors.primary.medium }
 		}
 	}
 

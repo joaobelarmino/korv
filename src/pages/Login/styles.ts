@@ -53,20 +53,8 @@ export const Form = styled.form`
 			color: ${({ theme }) => theme.colors.primary.main};
 		}
 	}
-`;
 
-export const Button = styled.button`
-    width: 100%;
-    background-color: ${({ theme }) => theme.colors.primary.main};
-    border: none;
-    margin-top: 24px;
-    border-radius: 4px;
-    padding: 16px 0;
-
-    span {
-        font-size: 24px;
-        line-height: 32px;
-        font-weight: bold;
-        color: ${({ theme }) => theme.colors.white.default};
-    }
+	button {
+		margin-top: 1.5rem;
+	}
 `;

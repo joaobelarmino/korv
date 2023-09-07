@@ -3,8 +3,9 @@ import { Route, Routes as Switch } from "react-router-dom";
 
 import Login from "./pages/Login";
 import Home from "./pages/Home";
-import ProtectedLayout from "./components/ProtectedLayout";
 import Footer from "./components/Footer";
+import ProtectedLayout from "./components/ProtectedLayout";
+import { Wrapper } from "./components/Layout/styles";
 
 const Routes: React.FC = () => {
 	return (
@@ -14,7 +15,9 @@ const Routes: React.FC = () => {
 				path='/'
 				element={
 					<ProtectedLayout>
-						<Home />
+						<Wrapper>
+							<Home />
+						</Wrapper>
 						<Footer />
 					</ProtectedLayout>
 				}

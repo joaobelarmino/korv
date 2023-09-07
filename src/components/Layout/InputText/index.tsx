@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { FieldErrors, FieldValues, UseFormRegister, Path, UseFormWatch, ValidationValue, ValidationValueMessage, ValidationRule } from "react-hook-form";
+import { FieldErrors, FieldValues, UseFormRegister, Path, UseFormWatch, ValidationRule } from "react-hook-form";
 
 import { InputWrapper, Container, Input, Label, ErrorMessage, InputIcon } from "./styles";
 import invalidIcon from "../../../assets/imgs/invalid-icon.svg";
@@ -13,6 +13,7 @@ type InputProps<T extends FieldValues> = {
 	required?: string | false,
 	errorsFromValidations: FieldErrors<T>,
 	pattern?: ValidationRule<RegExp> | undefined,
+	isFullWidth?: boolean,
 	register: UseFormRegister<T>,
 	watch: UseFormWatch<T>
 }
@@ -24,6 +25,7 @@ const InputText = <T extends FieldValues>({
 	required = false,
 	errorsFromValidations,
 	pattern = undefined,
+	isFullWidth = false,
 	register,
 	watch
 }: InputProps<T>) => {
@@ -43,7 +45,7 @@ const InputText = <T extends FieldValues>({
 	} : pattern;
 
 	return (
-		<Container>
+		<Container $fullWidth={isFullWidth}>
 			<InputWrapper data-is-focused={isFocused} aria-invalid={errorsFromValidations[id] ? "true" : "false"}>
 				<Input
 					className={value ? "filled" : ""}
@@ -53,9 +55,11 @@ const InputText = <T extends FieldValues>({
 					aria-invalid={errorsFromValidations[id] ? "true" : "false"}
 					{...register(id, {
 						required: required,
-						pattern: treatedPattern
+						pattern: treatedPattern,
+						onBlur: () => {
+							setIsFocused(false);
+						}
 					})}
-					onBlur={() => setIsFocused(false)}
 				/>
 				<Label htmlFor={id}>{placeholder}</Label>
 				{(type === "password" && !isPasswordVisible && !errorsFromValidations[id]) && (
