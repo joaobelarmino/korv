@@ -20,9 +20,10 @@
     "noUnusedParameters": true,
     "noFallthroughCasesInSwitch": true
   },
-  "include": ["src"],
+  "include": [
+	"src",
+	"src/assets/styles/styled.d.ts",
+	"custom.d.ts"
+  ],
   "references": [{ "path": "./tsconfig.node.json" }],
-  "files": [
-    "src/assets/styles/styled.d.ts"
-  ]
 }

@@ -50,6 +50,7 @@ const Login: React.FC = () => {
 				<Subtitle>Otimize seu tempo de forma segura e objetiva.</Subtitle>
 				<Form onSubmit={handleSubmit(onSubmit)} noValidate>
 					<InputText
+						isFullWidth
 						id="login"
 						type="email"
 						placeholder="E-mail"
@@ -59,6 +60,7 @@ const Login: React.FC = () => {
 						watch={watch}
 					/>
 					<InputText
+						isFullWidth
 						id="password"
 						type="password"
 						placeholder="Senha"
@@ -68,7 +70,7 @@ const Login: React.FC = () => {
 						watch={watch}
 					/>
 					<Link to="">Esqueceu sua senha?</Link>
-					<Button type="submit" isLoading={isLoading} text="Entrar"/>
+					<Button isFullWidth type="submit" isLoading={isLoading} text="Entrar"/>
 				</Form>
 			</Container>
 		</Wrapper>

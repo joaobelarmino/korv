@@ -4,8 +4,6 @@ export const Footer = styled.footer`
 	width: 100%;
 	background-color: ${({ theme }) => theme.colors.gray.darker};
 	height: 6rem;
-	position: absolute;
-	bottom: 0;
 
 	@media screen and (max-width: 767px) {
 		height: auto;

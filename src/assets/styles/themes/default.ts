@@ -8,8 +8,8 @@ export default {
 		},
 		primary: {
 			dark: "#6250ED",
-			main: "#7667E9",
-			medium: "#C0B8FF",
+			main: "#C0B8FF",
+			medium: "#7667E9",
 			light: "#E1DEFD",
 			lighter: "#FDFAFF",
 		},
