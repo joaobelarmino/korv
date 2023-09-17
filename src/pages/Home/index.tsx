@@ -7,7 +7,7 @@ import { HeaderWrap, SearchbarContainer, Form as SForm } from "./styles";
 import Header from "../../components/Header";
 import InputText from "../../components/Layout/InputText";
 import Button from "../../components/Layout/Button";
-
+import RoomsGeneral from "../../components/RoomsGeneral";
 
 type IFormInputs = {
 	searchbar: string;
@@ -40,6 +40,7 @@ const Home: React.FC = () => {
 					</SForm>
 				</SearchbarContainer>
 			</HeaderWrap>
+			<RoomsGeneral />
 		</>
 	);
 };

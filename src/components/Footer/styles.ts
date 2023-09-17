@@ -49,7 +49,8 @@ export const Contacts = styled.div`
 	div {
 		display: flex;
 		align-items: center;
-		img {
+
+		svg {
 			margin-right: 0.5rem;
 		}
 	}
