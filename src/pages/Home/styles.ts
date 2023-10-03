@@ -29,3 +29,15 @@ export const Form = styled.form`
 		}
 	}
 `;
+
+export const Text = styled.span`
+	font-size: 1.25rem;
+	line-height: 2rem;
+	color: ${({theme}) => theme.colors.gray.medium};
+`;
+
+export const Small = styled.small`
+	font-size: 0.875rem;
+	line-height: 1rem;
+	color: ${({theme}) => theme.colors.gray.medium};
+`;

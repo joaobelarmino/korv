@@ -3,9 +3,9 @@ import React from "react";
 import { Footer as SFooter, Container, Text, ContactsContainer, Contacts } from "./styles";
 import { Wrapper } from "../Layout/styles";
 
-import logoSmallWhite from "../../assets/imgs/logo-small-icon.svg";
-import emailIcon from "../../assets/imgs/email-icon.svg";
-import phoneIcon from "../../assets/imgs/phone-icon.svg";
+import { ReactComponent as LogoSmallWhite } from "../../assets/imgs/logo-small-icon.svg";
+import { ReactComponent as EmailIcon } from "../../assets/imgs/email-icon.svg";
+import { ReactComponent as PhoneIcon } from "../../assets/imgs/phone-icon.svg";
 
 
 const Footer: React.FC = () => {
@@ -13,17 +13,17 @@ const Footer: React.FC = () => {
 		<SFooter>
 			<Wrapper>
 				<Container>
-					<img src={logoSmallWhite} alt="Korv Logo" />
+					<LogoSmallWhite aria-description="Korv Logo" />
 					<Text>© Todos os direitos reservados, 2023</Text>
 					<ContactsContainer>
 						<Text>Em caso de problemas, entre em contato com a CTI:</Text>
 						<Contacts>
 							<div>
-								<img src={emailIcon} alt="email illustration" />
+								<EmailIcon aria-description="Email Illustration" />
 								<Text>cti.ptb@ifsp.edu.br</Text>
 							</div>
 							<div>
-								<img src={phoneIcon} alt="phone illustration" />
+								<PhoneIcon aria-describedby="Phone illustration" />
 								<Text>(11) 2541-0120</Text>
 							</div>
 						</Contacts>
