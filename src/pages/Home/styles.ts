@@ -6,6 +6,7 @@ export const HeaderWrap = styled.div`
 	align-items: center;
 	gap: 1rem;
 	margin-top: 4rem;
+	margin-bottom: 3.5rem;
 
 	@media screen and (max-width: 767px) {
 		flex-direction: column;
@@ -13,9 +14,10 @@ export const HeaderWrap = styled.div`
 	}
 `;
 
-export const SearchbarContainer = styled.div`
+export const Container = styled.div`
 	width: 100%;
 	max-width: 1001px;
+	margin-left: auto;
 `;
 
 export const Form = styled.form`

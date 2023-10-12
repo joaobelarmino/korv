@@ -2,7 +2,7 @@ import React from "react";
 import { useForm, SubmitHandler } from "react-hook-form";
 import { ReactComponent as SearchIcon } from "../../assets/imgs/search-icon.svg";
 
-import { HeaderWrap, SearchbarContainer, Form as SForm } from "./styles";
+import { HeaderWrap, Container, Form as SForm } from "./styles";
 
 import Header from "../../components/Header";
 import InputText from "../../components/Layout/InputText";
@@ -25,7 +25,7 @@ const Home: React.FC = () => {
 		<>
 			<HeaderWrap>
 				<Header />
-				<SearchbarContainer>
+				<Container>
 					<SForm onSubmit={handleSubmit(onSubmit)} noValidate>
 						<InputText
 							isFullWidth
@@ -38,9 +38,11 @@ const Home: React.FC = () => {
 						/>
 						<Button icon={SearchIcon} type="submit" />
 					</SForm>
-				</SearchbarContainer>
+				</Container>
 			</HeaderWrap>
-			<RoomsGeneral />
+			<Container>
+				<RoomsGeneral />
+			</Container>
 		</>
 	);
 };
