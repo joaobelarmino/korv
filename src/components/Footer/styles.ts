@@ -34,6 +34,7 @@ export const ContactsContainer = styled.div`
 	display: flex;
 	flex-direction: column;
 	justify-content: space-between;
+	gap: 1rem;
 
 	@media screen and (max-width: 767px) {
 		margin-top: 1rem;
@@ -53,10 +54,5 @@ export const Contacts = styled.div`
 		svg {
 			margin-right: 0.5rem;
 		}
-	}
-
-	@media screen and (max-width: 767px) {
-		margin-top: 1rem;
-		gap: 0.5rem;
 	}
 `;

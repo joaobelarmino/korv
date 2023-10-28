@@ -4,8 +4,7 @@ import { Link, useNavigate } from "react-router-dom";
 import toast from "react-hot-toast";
 import useAuth from "../../hooks/useAuth";
 
-import { Container, Title, Subtitle, Form } from "./styles";
-import { Wrapper } from "../../components/Layout/styles";
+import { Container, Title, Subtitle, Form, WrapperCentered } from "./styles";
 import ThemedToaster from "../../components/Layout/ThemedToaster";
 import Button from "../../components/Layout/Button";
 import InputText from "../../components/Layout/InputText";
@@ -44,7 +43,7 @@ const Login: React.FC = () => {
 	}, [auth]);
 
 	return (
-		<Wrapper>
+		<WrapperCentered>
 			<Container>
 				<Title>Bem-vindo ao <strong>Korv</strong></Title>
 				<Subtitle>Otimize seu tempo de forma segura e objetiva.</Subtitle>
@@ -73,7 +72,7 @@ const Login: React.FC = () => {
 					<Button isFullWidth type="submit" isLoading={isLoading} text="Entrar"/>
 				</Form>
 			</Container>
-		</Wrapper>
+		</WrapperCentered>
 	);
 };
 
