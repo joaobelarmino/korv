@@ -5,7 +5,6 @@ import toast from "react-hot-toast";
 import useAuth from "../../hooks/useAuth";
 
 import { Container, Title, Subtitle, Form, WrapperCentered } from "./styles";
-// import { Wrapper } from "../../components/Layout/styles";
 import ThemedToaster from "../../components/Layout/ThemedToaster";
 import Button from "../../components/Layout/Button";
 import InputText from "../../components/Layout/InputText";
