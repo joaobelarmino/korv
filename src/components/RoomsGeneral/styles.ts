@@ -53,14 +53,18 @@ export const NumberBubble = styled.div`
 
 export const RoomsGrid = styled.div`
 	display: grid;
-	grid-template-columns: repeat(3, minmax(288px, 322px));
+	grid-template-columns: repeat(4, minmax(288px, 322px));
 	grid-template-rows: auto;
-	gap: 17.5px;
+	gap: 16px;
+
+	@media screen and (max-width: 1248px) {
+		display: flex;
+		flex-wrap: wrap;
+		gap: 1rem;
+	}
 
 	@media screen and (max-width: 936px) {
-		display: flex;
 		flex-direction: column;
-		gap: 1rem;
 	}
 `;
 
@@ -72,8 +76,6 @@ export const SeeMore = styled.button`
 	border: none;
 	background-image: url("data:image/svg+xml,%3csvg width='100%25' height='100%25' xmlns='http://www.w3.org/2000/svg'%3e%3crect width='100%25' height='100%25' fill='none' rx='4' ry='4' stroke='%239A99A3FF' stroke-width='3' stroke-dasharray='12%2c 12' stroke-dashoffset='0' stroke-linecap='square'/%3e%3c/svg%3e");
 	background-color: transparent;
-	min-width: 288px;
-	max-width: 322px;
 	height: 120px;
 	width: 100%;
 	border-radius: 4px;
@@ -85,6 +87,6 @@ export const SeeMore = styled.button`
 	font-weight: 500;
 
 	@media screen and (max-width: 936px) {
-		max-width: 100%
+		width: 100%
 	}
 `;

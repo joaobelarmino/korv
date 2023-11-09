@@ -81,6 +81,7 @@ export const Label = styled.label`
 	top: 18px;
 	left: 12px;
 	user-select: none;
+	cursor: text;
 `;
 
 export const InputIcon = styled.img`

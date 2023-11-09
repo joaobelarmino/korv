@@ -2,7 +2,7 @@ import React, { FunctionComponent, SVGProps } from "react";
 import Lottie from "react-lottie";
 import spinnerPrimary from "../../../assets/lotties/spinner__white.json";
 
-import { Button as SButton } from "./styles";
+import { Counter, Button as SButton } from "./styles";
 
 interface ButtonProps {
 	text?: string;
@@ -11,6 +11,7 @@ interface ButtonProps {
 	isFullWidth?: boolean;
 	icon?: FunctionComponent<SVGProps<SVGSVGElement>>;
 	isLoading?: boolean;
+	counter?: number | null;
 	onClick?: React.MouseEventHandler;
 }
 
@@ -21,6 +22,7 @@ const Button = ({
 	isFullWidth = false,
 	icon: Icon,
 	isLoading = false,
+	counter = null,
 	onClick
 }: ButtonProps) => {
 	const defaultOptions = {
@@ -38,8 +40,9 @@ const Button = ({
 				<Lottie options={defaultOptions} height={64} width={64} />
 			) : (
 				<>
-					{Icon && (<Icon />)}
-					{text && (<span>{text}</span>)}
+					{ Icon && (<Icon />)}
+					{ text && (<span>{text}</span>)}
+					{ !!counter && (<Counter>{counter}</Counter>)}
 				</>
 			)}
 		</SButton>

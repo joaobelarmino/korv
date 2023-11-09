@@ -4,7 +4,7 @@ export const HeaderWrap = styled.div`
 	display: flex;
 	justify-content: space-between;
 	align-items: center;
-	gap: 1rem;
+	gap: 2rem;
 	margin-top: 4rem;
 	margin-bottom: 3.5rem;
 
@@ -12,12 +12,6 @@ export const HeaderWrap = styled.div`
 		flex-direction: column;
 		margin-top: 0;
 	}
-`;
-
-export const Container = styled.div`
-	width: 100%;
-	max-width: 1001px;
-	margin-left: auto;
 `;
 
 export const Form = styled.form`

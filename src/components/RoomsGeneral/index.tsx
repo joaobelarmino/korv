@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import { useSearchParamsState } from "../../hooks/useSearchParams";
 import { ReactComponent as SyncIcon } from "../../assets/imgs/sync-icon.svg";
 import { ReactComponent as Arrow } from "../../assets/imgs/arrow.svg";
 
@@ -8,36 +9,23 @@ import { Text, Small } from "../../pages/Home/styles";
 import Button from "../Layout/Button";
 import { RoomCard } from "../RoomCard";
 import { IRoomCardStatus } from "../RoomCard/RoomCardStatus/type";
+import LocalesService from "../../services/LocalesService";
 
 interface SensorsArray extends IRoomCardStatus {
 	name: string,
-	block: string,
+	block: BlockSensor,
+	id: number
+}
+
+interface BlockSensor {
+	name: string,
 	id: number
 }
 
 const RoomsGeneral: React.FC = () => {
 	const [maxVisibleRooms, setMaxVisibleRooms] = useState(window.innerWidth > 936 ? 12 : 4);
-	const [sensorsArray, setSensorsArray] = useState<SensorsArray[]>([
-		{ name: "Sala C01", block: "Bloco A", id: 1, statuses: [{ type: "eletricity", enabled: Boolean(Math.round(Math.random())) }, { type: "lock", enabled: Boolean(Math.round(Math.random())) }] },
-		{ name: "Sala C02", block: "Bloco A", id: 2, statuses: [{ type: "eletricity", enabled: Boolean(Math.round(Math.random())) }, { type: "lock", enabled: Boolean(Math.round(Math.random())) }] },
-		{ name: "Sala C03", block: "Bloco A", id: 3, statuses: [{ type: "eletricity", enabled: Boolean(Math.round(Math.random())) }, { type: "lock", enabled: Boolean(Math.round(Math.random())) }] },
-		{ name: "Sala C04", block: "Bloco A", id: 4, statuses: [{ type: "eletricity", enabled: Boolean(Math.round(Math.random())) }, { type: "lock", enabled: Boolean(Math.round(Math.random())) }] },
-		{ name: "Sala C05", block: "Bloco A", id: 5, statuses: [{ type: "eletricity", enabled: Boolean(Math.round(Math.random())) }, { type: "lock", enabled: Boolean(Math.round(Math.random())) }] },
-		{ name: "Sala C06", block: "Bloco A", id: 6, statuses: [{ type: "eletricity", enabled: Boolean(Math.round(Math.random())) }, { type: "lock", enabled: Boolean(Math.round(Math.random())) }] },
-		{ name: "Sala C07", block: "Bloco A", id: 7, statuses: [{ type: "eletricity", enabled: Boolean(Math.round(Math.random())) }, { type: "lock", enabled: Boolean(Math.round(Math.random())) }] },
-		{ name: "Sala C08", block: "Bloco A", id: 8, statuses: [{ type: "eletricity", enabled: Boolean(Math.round(Math.random())) }, { type: "lock", enabled: Boolean(Math.round(Math.random())) }] },
-		{ name: "Sala C09", block: "Bloco A", id: 9, statuses: [{ type: "eletricity", enabled: Boolean(Math.round(Math.random())) }, { type: "lock", enabled: Boolean(Math.round(Math.random())) }] },
-		{ name: "Sala C10", block: "Bloco A", id: 10, statuses: [{ type: "eletricity", enabled: Boolean(Math.round(Math.random())) }, { type: "lock", enabled: Boolean(Math.round(Math.random())) }] },
-		{ name: "Sala C11", block: "Bloco A", id: 11, statuses: [{ type: "eletricity", enabled: Boolean(Math.round(Math.random())) }, { type: "lock", enabled: Boolean(Math.round(Math.random())) }] },
-		{ name: "Sala C12", block: "Bloco A", id: 12, statuses: [{ type: "eletricity", enabled: Boolean(Math.round(Math.random())) }, { type: "lock", enabled: Boolean(Math.round(Math.random())) }] },
-		{ name: "Sala C13", block: "Bloco A", id: 13, statuses: [{ type: "eletricity", enabled: Boolean(Math.round(Math.random())) }, { type: "lock", enabled: Boolean(Math.floor(Math.random())) }] },
-		{ name: "Sala C14", block: "Bloco A", id: 14, statuses: [{ type: "eletricity", enabled: Boolean(Math.round(Math.random())) }, { type: "lock", enabled: Boolean(Math.floor(Math.random())) }] },
-		{ name: "Sala C15", block: "Bloco A", id: 15, statuses: [{ type: "eletricity", enabled: Boolean(Math.round(Math.random())) }, { type: "lock", enabled: Boolean(Math.floor(Math.random())) }] },
-		{ name: "Sala C16", block: "Bloco A", id: 16, statuses: [{ type: "eletricity", enabled: Boolean(Math.round(Math.random())) }, { type: "lock", enabled: Boolean(Math.floor(Math.random())) }] },
-		{ name: "Sala C17", block: "Bloco A", id: 17, statuses: [{ type: "eletricity", enabled: Boolean(Math.round(Math.random())) }, { type: "lock", enabled: Boolean(Math.floor(Math.random())) }] },
-		{ name: "Sala C18", block: "Bloco A", id: 18, statuses: [{ type: "eletricity", enabled: Boolean(Math.round(Math.random())) }, { type: "lock", enabled: Boolean(Math.floor(Math.random())) }] },
-		{ name: "Sala C19", block: "Bloco A", id: 19, statuses: [{ type: "eletricity", enabled: Boolean(Math.round(Math.random())) }, { type: "lock", enabled: Boolean(Math.floor(Math.random())) }] }
-	]);
+	const [searchParams] = useSearchParamsState("regionFilter");
+	const [sensorsArray, setSensorsArray] = useState<SensorsArray[]>([]);
 	const concludedRooms = sensorsArray.filter((sensor) => (sensor.statuses.every(status => !status.enabled)));
 	const pendingRoomsFullArray = sensorsArray.filter((sensor) => (sensor.statuses.some(status => status.enabled)));
 	const filteredArray = pendingRoomsFullArray.slice(0, maxVisibleRooms);
@@ -56,7 +44,7 @@ const RoomsGeneral: React.FC = () => {
 
 			return (
 				<RoomCard.Root key={sensor.id} isOn={onlyOn}>
-					<RoomCard.Info roomName={sensor.name} blockName={sensor.block} />
+					<RoomCard.Info roomName={sensor.name} blockName={sensor.block.name} />
 					<RoomCard.Status statuses={sensor.statuses} />
 				</RoomCard.Root>
 			);
@@ -73,13 +61,20 @@ const RoomsGeneral: React.FC = () => {
 		}
 	}
 
+	async function getLocalesData() {
+		const data = await LocalesService.getLocalesList();
+
+		setSensorsArray(data);
+	}
+
 	useEffect(() => {
+		getLocalesData();
 		window.addEventListener("resize", handleResizeEvent);
 
 		return () => {
 			window.removeEventListener("resize", handleResizeEvent);
 		};
-	}, []);
+	}, [searchParams]);
 
 	return (
 		<>

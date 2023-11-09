@@ -26,18 +26,34 @@ export const Button = styled.button<ButtonProps>`
 			${$variant === "secondary" && css`
 				color: ${theme.colors.primary.medium};
 				border-color: ${theme.colors.primary.medium};
+
+				p {
+					background-color: ${theme.colors.primary.medium};
+				}
 			`}
 			${$variant === "primary" && css`
 				background-color: ${theme.colors.primary.medium};
+
+				p {
+					color: ${theme.colors.primary.medium};
+				}
 			`}
 		}
 		&:active {
 			${$variant === "secondary" && css`
 				color: ${theme.colors.primary.dark};
 				border-color: ${theme.colors.primary.dark};
+
+				p {
+					background-color: ${theme.colors.primary.dark}
+				}
 			`}
 			${$variant === "primary" && css`
 				background-color: ${theme.colors.primary.dark};
+
+				p {
+					color: ${theme.colors.primary.dark}
+				}
 			`}
 		}
 
@@ -47,8 +63,28 @@ export const Button = styled.button<ButtonProps>`
 			font-weight: bold;
 		}
 
+		p {
+			${$variant === "primary" && css`
+				background-color: ${theme.colors.primary.lighter};
+				color: ${theme.colors.primary.main};
+			`};
+			${$variant === "secondary" && css`
+				background-color: ${({ theme }) => theme.colors.primary.main};
+				color: ${({ theme }) => theme.colors.primary.lighter};
+			`}
+		}
+
 		@media screen and (max-width: 767px) {
 			width: 100%;
 		}
 	`};
+`;
+
+export const Counter = styled.p`
+	font-size: 1rem;
+	line-height: 1.5rem;
+	font-weight: bold;
+	padding: 0 0.5rem;
+	border-radius: 100%;
+	transition: all 400ms ease-in-out;
 `;
