@@ -5,7 +5,7 @@ import Login from "./pages/Login";
 import Home from "./pages/Home";
 import Footer from "./components/Footer";
 import ProtectedLayout from "./components/ProtectedLayout";
-import { Wrapper } from "./components/Layout/styles";
+import { ContainerRoot, Wrapper } from "./components/Layout/styles";
 
 const Routes: React.FC = () => {
 	return (
@@ -15,10 +15,12 @@ const Routes: React.FC = () => {
 				path='/'
 				element={
 					<ProtectedLayout>
-						<Wrapper>
-							<Home />
-						</Wrapper>
-						<Footer />
+						<ContainerRoot>
+							<Wrapper>
+								<Home />
+							</Wrapper>
+							<Footer />
+						</ContainerRoot>
 					</ProtectedLayout>
 				}
 			/>

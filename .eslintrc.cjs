@@ -40,6 +40,7 @@ module.exports = {
 		],
 		"newline-before-return": "error",
 		"newline-after-var": ["error", "always"],
-		"no-duplicate-imports": "error"
+		"no-duplicate-imports": "error",
+		"react/prop-types": [0]
 	}
 };

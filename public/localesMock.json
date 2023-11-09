@@ -1,0 +1,362 @@
+[
+	{
+		"name": "Sala C01",
+		"block": {
+			"name": "Bloco A",
+			"id": 1
+		},
+		"id": 1,
+		"statuses": [
+			{
+				"type": "eletricity",
+				"enabled": true
+			},
+			{
+				"type": "lock",
+				"enabled": false
+			}
+		]
+	},
+	{
+		"name": "Sala C02",
+		"block": {
+			"name": "Bloco B",
+			"id": 2
+		},
+		"id": 2,
+		"statuses": [
+			{
+				"type": "eletricity",
+				"enabled": false
+			},
+			{
+				"type": "lock",
+				"enabled": true
+			}
+		]
+	},
+	{
+		"name": "Sala C03",
+		"block": {
+			"name": "Bloco C",
+			"id": 3
+		},
+		"id": 3,
+		"statuses": [
+			{
+				"type": "eletricity",
+				"enabled": true
+			},
+			{
+				"type": "lock",
+				"enabled": false
+			}
+		]
+	},
+	{
+		"name": "Sala C04",
+		"block": {
+			"name": "Bloco A",
+			"id": 1
+		},
+		"id": 4,
+		"statuses": [
+			{
+				"type": "eletricity",
+				"enabled": false
+			},
+			{
+				"type": "lock",
+				"enabled": true
+			}
+		]
+	},
+	{
+		"name": "Sala C05",
+		"block": {
+			"name": "Bloco B",
+			"id": 2
+		},
+		"id": 5,
+		"statuses": [
+			{
+				"type": "eletricity",
+				"enabled": true
+			},
+			{
+				"type": "lock",
+				"enabled": false
+			}
+		]
+	},
+	{
+		"name": "Sala C06",
+		"block": {
+			"name": "Bloco C",
+			"id": 3
+		},
+		"id": 6,
+		"statuses": [
+			{
+				"type": "eletricity",
+				"enabled": false
+			},
+			{
+				"type": "lock",
+				"enabled": true
+			}
+		]
+	},
+	{
+		"name": "Sala C07",
+		"block": {
+			"name": "Bloco D",
+			"id": 4
+		},
+		"id": 7,
+		"statuses": [
+			{
+				"type": "eletricity",
+				"enabled": false
+			},
+			{
+				"type": "lock",
+				"enabled": false
+			}
+		]
+	},
+	{
+		"name": "Sala C08",
+		"block": {
+			"name": "Bloco E",
+			"id": 5
+		},
+		"id": 8,
+		"statuses": [
+			{
+				"type": "eletricity",
+				"enabled": false
+			},
+			{
+				"type": "lock",
+				"enabled": false
+			}
+		]
+	},
+	{
+		"name": "Sala C09",
+		"block": {
+			"name": "Bloco F",
+			"id": 6
+		},
+		"id": 9,
+		"statuses": [
+			{
+				"type": "eletricity",
+				"enabled": false
+			},
+			{
+				"type": "lock",
+				"enabled": false
+			}
+		]
+	},
+	{
+		"name": "Sala C10",
+		"block": {
+			"name": "Bloco A",
+			"id": 1
+		},
+		"id": 10,
+		"statuses": [
+			{
+				"type": "eletricity",
+				"enabled": false
+			},
+			{
+				"type": "lock",
+				"enabled": true
+			}
+		]
+	},
+	{
+		"name": "Sala C11",
+		"block": {
+			"name": "Bloco B",
+			"id": 2
+		},
+		"id": 11,
+		"statuses": [
+			{
+				"type": "eletricity",
+				"enabled": true
+			},
+			{
+				"type": "lock",
+				"enabled": false
+			}
+		]
+	},
+	{
+		"name": "Sala C12",
+		"block": {
+			"name": "Bloco C",
+			"id": 3
+		},
+		"id": 12,
+		"statuses": [
+			{
+				"type": "eletricity",
+				"enabled": true
+			},
+			{
+				"type": "lock",
+				"enabled": false
+			}
+		]
+	},
+	{
+		"name": "Sala C13",
+		"block": {
+			"name": "Bloco D",
+			"id": 4
+		},
+		"id": 13,
+		"statuses": [
+			{
+				"type": "eletricity",
+				"enabled": false
+			},
+			{
+				"type": "lock",
+				"enabled": false
+			}
+		]
+	},
+	{
+		"name": "Sala C14",
+		"block": {
+			"name": "Bloco E",
+			"id": 5
+		},
+		"id": 14,
+		"statuses": [
+			{
+				"type": "eletricity",
+				"enabled": false
+			},
+			{
+				"type": "lock",
+				"enabled": false
+			}
+		]
+	},
+	{
+		"name": "Sala C15",
+		"block": {
+			"name": "Bloco F",
+			"id": 6
+		},
+		"id": 15,
+		"statuses": [
+			{
+				"type": "eletricity",
+				"enabled": false
+			},
+			{
+				"type": "lock",
+				"enabled": false
+			}
+		]
+	},
+	{
+		"name": "Sala C16",
+		"block": {
+			"name": "Bloco A",
+			"id": 1
+		},
+		"id": 16,
+		"statuses": [
+			{
+				"type": "eletricity",
+				"enabled": true
+			},
+			{
+				"type": "lock",
+				"enabled": false
+			}
+		]
+	},
+	{
+		"name": "Sala C17",
+		"block": {
+			"name": "Bloco B",
+			"id": 2
+		},
+		"id": 17,
+		"statuses": [
+			{
+				"type": "eletricity",
+				"enabled": false
+			},
+			{
+				"type": "lock",
+				"enabled": true
+			}
+		]
+	},
+	{
+		"name": "Sala C18",
+		"block": {
+			"name": "Bloco C",
+			"id": 3
+		},
+		"id": 18,
+		"statuses": [
+			{
+				"type": "eletricity",
+				"enabled": true
+			},
+			{
+				"type": "lock",
+				"enabled": false
+			}
+		]
+	},
+	{
+		"name": "Sala C19",
+		"block": {
+			"name": "Bloco D",
+			"id": 4
+		},
+		"id": 19,
+		"statuses": [
+			{
+				"type": "eletricity",
+				"enabled": true
+			},
+			{
+				"type": "lock",
+				"enabled": false
+			}
+		]
+	},
+	{
+		"name": "Sala C20",
+		"block": {
+			"name": "Bloco E",
+			"id": 5
+		},
+		"id": 20,
+		"statuses": [
+			{
+				"type": "eletricity",
+				"enabled": false
+			},
+			{
+				"type": "lock",
+				"enabled": false
+			}
+		]
+	}
+]

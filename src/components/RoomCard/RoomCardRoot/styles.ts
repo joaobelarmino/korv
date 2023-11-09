@@ -12,8 +12,6 @@ export const Card = styled.div<CardProps>`
 		border: 1px solid ${$isOn ? theme.colors.primary.main : theme.colors.gray.light};
 		background-color: ${$isOn ? theme.colors.primary.lighter : theme.colors.gray.lighter};
 		padding: 1.5rem;
-		min-width: 288px;
-		max-width: 322px;
 		height: 120px;
 		width: 100%;
 		border-radius: 4px;
@@ -26,6 +24,6 @@ export const Card = styled.div<CardProps>`
 	`}
 
 	@media screen and (max-width: 936px) {
-		max-width: 100%
+		width: 100%
 	}
 `;
