@@ -1,6 +1,7 @@
 export interface IUser {
     email?: string;
     token?: string;
+	isAdmin?: boolean;
 }
 
 export interface IContext extends IUser {

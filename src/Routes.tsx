@@ -24,6 +24,25 @@ const Routes: React.FC = () => {
 					</ProtectedLayout>
 				}
 			/>
+			<Route
+				path='/regioes'
+				element={
+					<ProtectedLayout adminOnly>
+						{/* TODO: Implement regions page */}
+						<></>
+					</ProtectedLayout>
+				}
+			/>
+			<Route
+				path="/not-found"
+				element={
+					<ContainerRoot>
+						{/* TODO: Implement not found page */}
+						<h1>Página não encontrada</h1>
+						<Footer />
+					</ContainerRoot>
+				}
+			/>
 		</Switch>
 	);
 };

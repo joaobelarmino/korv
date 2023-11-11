@@ -11,7 +11,7 @@ export const AuthProvider = ({children}: IAuthProvider) => {
 	async function authenticate (email: string, password: string) {
 		const response = await LoginService.attempLogin(email, password);
 
-		const payload = { token: response.token, email };
+		const payload = { token: response.token, email, isAdmin: response.roles.includes("KORV_ADMIN") };
 
 		setUser(payload);
 		setUserLocalStorage(payload);
