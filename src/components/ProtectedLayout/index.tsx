@@ -11,7 +11,7 @@ const ProtectedLayout = ({children, adminOnly = false}: {children: React.ReactNo
 			navigate("/login");
 		}
 
-		if(adminOnly && !auth.isAdmin) {
+		if(adminOnly && !auth.isAdmin()) {
 			navigate("/not-found");
 		}
 	}, [auth]);

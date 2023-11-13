@@ -69,7 +69,7 @@ const Header: React.FC = () => {
 					<HomeIcon />
 					<LabelItem>Início</LabelItem>
 				</MenuItem>
-				{isAdmin && (
+				{isAdmin() && (
 					<>
 						<MenuItem to="/usuarios">
 							<UserIcon />
