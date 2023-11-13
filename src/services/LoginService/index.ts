@@ -4,11 +4,11 @@ class LoginService {
 	httpClient: HttpClient;
 
 	constructor() {
-		this.httpClient = new HttpClient("https://reqres.in/api");
+		this.httpClient = new HttpClient(import.meta.env.VITE_API_URL);
 	}
 
-	async attempLogin(email: string, password: string) {
-		return this.httpClient.post("/login", {body: { email, password }});
+	async attempLogin(username: string, password: string) {
+		return this.httpClient.post("/login", {body: { username, password }});
 	}
 }
 

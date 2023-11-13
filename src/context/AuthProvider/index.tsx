@@ -1,5 +1,6 @@
 import React, { createContext, useState } from "react";
-import { IAuthProvider, IContext, IUser } from "./types";
+import { jwtDecode } from "jwt-decode";
+import { IAuthProvider, IContext, IToken, IUser } from "./types";
 import LoginService from "../../services/LoginService";
 import { getUserLocalStorage, setUserLocalStorage } from "./util";
 
@@ -17,13 +18,24 @@ export const AuthProvider = ({children}: IAuthProvider) => {
 		setUserLocalStorage(payload);
 	}
 
+	function isAdmin() {
+		const data = getUserLocalStorage();
+		const { roles } = jwtDecode<IToken>(data.token);
+
+		if (roles.includes("KORV_ADMIN")) {
+			return true;
+		}
+
+		return false;
+	}
+
 	function logout () {
 		setUser(null);
 		setUserLocalStorage(null);
 	}
 
 	return (
-		<AuthContext.Provider value={{...user, authenticate, logout }}>
+		<AuthContext.Provider value={{...user, authenticate, logout, isAdmin }}>
 			{children}
 		</AuthContext.Provider>
 	);

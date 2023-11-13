@@ -13,7 +13,7 @@ const Header: React.FC = () => {
 	const [ shouldHandleClick, setShouldHandleClick ] = useState<boolean>(true);
 	const [ isMobile, setIsMobile ] = useState<boolean>(window.innerWidth <= 767);
 	const dropdownRef = useRef<HTMLDivElement>(null);
-	const { logout } = useAuth();
+	const { logout, isAdmin } = useAuth();
 
 	function handleHeaderClick() {
 		if (shouldHandleClick) {
@@ -69,10 +69,18 @@ const Header: React.FC = () => {
 					<HomeIcon />
 					<LabelItem>Início</LabelItem>
 				</MenuItem>
-				<MenuItem to="/minha-conta">
-					<UserIcon />
-					<LabelItem>Minha conta</LabelItem>
-				</MenuItem>
+				{isAdmin() && (
+					<>
+						<MenuItem to="/usuarios">
+							<UserIcon />
+							<LabelItem>Administrar usuários</LabelItem>
+						</MenuItem>
+						<MenuItem to="/regioes">
+							<UserIcon />
+							<LabelItem>Administrar regiões</LabelItem>
+						</MenuItem>
+					</>
+				)}
 				<MenuItem to="/login" onClick={logout}>
 					<ExitIcon />
 					<LabelItem>Sair</LabelItem>
