@@ -60,7 +60,7 @@ export const Button = styled.button<ButtonProps>`
 		span {
 			font-size: 24px;
 			line-height: 32px;
-			font-weight: bold;
+			font-weight: 500;
 		}
 
 		p {

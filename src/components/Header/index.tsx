@@ -71,7 +71,7 @@ const Header: React.FC = () => {
 				</MenuItem>
 				{isAdmin() && (
 					<>
-						<MenuItem to="/usuarios">
+						<MenuItem to="/users">
 							<UserIcon />
 							<LabelItem>Administrar usuários</LabelItem>
 						</MenuItem>

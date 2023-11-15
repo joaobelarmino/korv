@@ -1,0 +1,32 @@
+[
+	{
+		"id": 1,
+		"name": "Rogerio Silva",
+		"email": "rogerio.silva@ifsp.edu.br",
+		"roles": ["EMPLOYEE", "KORV_ADMIN"]
+	},
+	{
+		"id": 2,
+		"name": "Carlos",
+		"email": "carlos@ifsp.edu.br",
+		"roles": ["EMPLOYEE"]
+	},
+	{
+		"id": 3,
+		"name": "Jane Miranda",
+		"email": "jane.miranda@ifsp.edu.br",
+		"roles": ["KORV_ADMIN"]
+	},
+	{
+		"id": 4,
+		"name": "Youseff",
+		"email": "youseff.mendes@ifsp.edu.br",
+		"roles": ["EMPLOYEE", "KORV_ADMIN"]
+	},
+	{
+		"id": 5,
+		"name": "Matheus Toretto",
+		"email": "matheus.toretto@ifsp.edu.br",
+		"roles": ["EMPLOYEE"]
+	}
+]

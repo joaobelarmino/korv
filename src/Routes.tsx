@@ -1,11 +1,13 @@
 import React from "react";
 import { Route, Routes as Switch } from "react-router-dom";
 
+import { ContainerRoot, Wrapper } from "./components/Layout/styles";
+
 import Login from "./pages/Login";
 import Home from "./pages/Home";
+import Users from "./pages/Users";
 import Footer from "./components/Footer";
 import ProtectedLayout from "./components/ProtectedLayout";
-import { ContainerRoot, Wrapper } from "./components/Layout/styles";
 
 const Routes: React.FC = () => {
 	return (
@@ -18,6 +20,19 @@ const Routes: React.FC = () => {
 						<ContainerRoot>
 							<Wrapper>
 								<Home />
+							</Wrapper>
+							<Footer />
+						</ContainerRoot>
+					</ProtectedLayout>
+				}
+			/>
+			<Route
+				path='/users'
+				element={
+					<ProtectedLayout adminOnly>
+						<ContainerRoot>
+							<Wrapper>
+								<Users />
 							</Wrapper>
 							<Footer />
 						</ContainerRoot>
