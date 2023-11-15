@@ -22,7 +22,7 @@ export const AuthProvider = ({children}: IAuthProvider) => {
 		const data = getUserLocalStorage();
 		const { roles } = jwtDecode<IToken>(data.token);
 
-		if (roles.includes("KORV_ADMIN")) {
+		if (roles.includes(import.meta.env.VITE_ADMIN_ROLE)) {
 			return true;
 		}
 
