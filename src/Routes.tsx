@@ -49,7 +49,7 @@ const Routes: React.FC = () => {
 				}
 			/>
 			<Route
-				path="/not-found"
+				path="*"
 				element={
 					<ContainerRoot>
 						{/* TODO: Implement not found page */}

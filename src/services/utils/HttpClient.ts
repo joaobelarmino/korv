@@ -1,56 +1,57 @@
+import axios, { AxiosInstance, AxiosRequestConfig, AxiosResponse } from "axios";
+
 export default class HttpClient {
-	baseURL: string | URL;
+	private axiosInstance: AxiosInstance;
+	private token: string | null;
 
-	constructor(baseURL: string | URL) {
-		this.baseURL = baseURL;
-	}
-
-	async makeRequest(path: string, options: {body: object, method?: string, headers?: Headers}) {
-		const headers = new Headers();
-
-		if (options.body) {
-			headers.append("Content-Type", "application/json");
-		}
-
-		const response = await fetch(`${this.baseURL}${path}`, {
-			method: options.method,
-			body: JSON.stringify(options.body),
-			headers,
+	constructor(baseURL: string, token?: string) {
+		this.token = token || null;
+		this.axiosInstance = axios.create({
+			baseURL: baseURL,
+			headers: {
+				"Content-Type": "application/json",
+			}
 		});
 
-		let body = null;
-		const contentType = response.headers.get("Content-Type");
+		this.setupInterceptors();
+	}
 
-		if (contentType && contentType.includes("application/json")) {
-			body = await response.json();
+	setupInterceptors() {
+		this.axiosInstance.interceptors.request.use(config => {
+			const token = this.token;
+
+			if(token) {
+				config.headers.Authorization = `Bearer ${token}`;
+			}
+
+			return config;
+		}, error => Promise.reject(error));
+	}
+
+	async makeRequest(path: string, options: { body?: object, method?: string, headers?: object }) {
+		try {
+			const response = await this.axiosInstance.request({
+				url: path,
+				method: options.method,
+				data: options.body,
+				headers: options.headers
+			});
+
+			if (response.status === 200) {
+				return response.data;
+			}
+
+			throw new Error(response.data.error);
+		} catch (error) {
+			throw new Error(error.message);
 		}
-
-		if (response.ok) {
-			return body;
-		}
-
-		throw new Error(body.error);
 	}
 
 	async get(path: string) {
-		const response = await fetch(`${this.baseURL}${path}`);
-		const contentType = response.headers.get("Content-Type");
-		let body = null;
-
-		if (contentType && contentType.includes("application/json")) {
-			body = await response.json();
-		}
-
-		if (response.ok) {
-			return body;
-		}
+		return this.makeRequest(path, { method: "GET" });
 	}
 
-	post(path: string, options: {body: object, method?: string, headers?: Headers}) {
-		return this.makeRequest(path, {
-			method: "POST",
-			body: options?.body,
-			headers: options?.headers,
-		});
+	post(path: string, options: { body: object, headers?: object }) {
+		return this.makeRequest(path, { method: "POST", body: options.body, headers: options.headers });
 	}
 }

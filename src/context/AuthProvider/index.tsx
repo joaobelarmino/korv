@@ -20,6 +20,9 @@ export const AuthProvider = ({children}: IAuthProvider) => {
 
 	function isAdmin() {
 		const data = getUserLocalStorage();
+
+		if(!data) return false;
+
 		const { roles } = jwtDecode<IToken>(data.token);
 
 		if (roles.includes(import.meta.env.VITE_ADMIN_ROLE)) {
