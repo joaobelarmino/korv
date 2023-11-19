@@ -9,9 +9,7 @@ const ProtectedLayout = ({children, adminOnly = false}: {children: React.ReactNo
 	useEffect(() => {
 		if(!auth.email){
 			navigate("/login");
-		}
-
-		if(adminOnly && !auth.isAdmin()) {
+		} else if(adminOnly && !auth.isAdmin()) {
 			navigate("/not-found");
 		}
 	}, [auth]);

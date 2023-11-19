@@ -22,7 +22,11 @@ export const Button = styled.button<ButtonProps>`
 		gap: 1rem;
 		transition: all 400ms ease-in-out;
 
-		&:hover {
+		&:disabled {
+			cursor: default;
+		}
+
+		&:hover:not(:disabled) {
 			${$variant === "secondary" && css`
 				color: ${theme.colors.primary.medium};
 				border-color: ${theme.colors.primary.medium};
@@ -39,7 +43,7 @@ export const Button = styled.button<ButtonProps>`
 				}
 			`}
 		}
-		&:active {
+		&:active:not(:disabled) {
 			${$variant === "secondary" && css`
 				color: ${theme.colors.primary.dark};
 				border-color: ${theme.colors.primary.dark};

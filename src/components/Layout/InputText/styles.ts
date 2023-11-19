@@ -4,7 +4,7 @@ export const Container = styled.div<{ $fullWidth?: boolean }>`
 	width: ${props => props.$fullWidth ? "100%" : "auto"};
 
     & + & {
-        margin-top: 32px;
+        margin-top: 2rem;
     }
 `;
 

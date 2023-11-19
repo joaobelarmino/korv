@@ -1,56 +1,64 @@
+import axios, { AxiosError, AxiosInstance, AxiosResponse } from "axios";
+
 export default class HttpClient {
-	baseURL: string | URL;
+	private axiosInstance: AxiosInstance;
+	private token: string | null;
 
-	constructor(baseURL: string | URL) {
-		this.baseURL = baseURL;
-	}
-
-	async makeRequest(path: string, options: {body: object, method?: string, headers?: Headers}) {
-		const headers = new Headers();
-
-		if (options.body) {
-			headers.append("Content-Type", "application/json");
-		}
-
-		const response = await fetch(`${this.baseURL}${path}`, {
-			method: options.method,
-			body: JSON.stringify(options.body),
-			headers,
+	constructor(baseURL: string, token?: string) {
+		this.token = token || null;
+		this.axiosInstance = axios.create({
+			baseURL: baseURL,
+			headers: {
+				"Content-Type": "application/json",
+			}
 		});
 
-		let body = null;
-		const contentType = response.headers.get("Content-Type");
-
-		if (contentType && contentType.includes("application/json")) {
-			body = await response.json();
-		}
-
-		if (response.ok) {
-			return body;
-		}
-
-		throw new Error(body.error);
+		this.setupInterceptors();
 	}
 
-	async get(path: string) {
-		const response = await fetch(`${this.baseURL}${path}`);
-		const contentType = response.headers.get("Content-Type");
-		let body = null;
+	setupInterceptors() {
+		this.axiosInstance.interceptors.request.use(config => {
+			const token = this.token;
 
-		if (contentType && contentType.includes("application/json")) {
-			body = await response.json();
-		}
+			if(token) {
+				config.headers.Authorization = `Bearer ${token}`;
+			}
 
-		if (response.ok) {
-			return body;
+			return config;
+		}, error => Promise.reject(error));
+	}
+
+	async makeRequest(path: string, options: { body?: object, method?: string, headers?: object }): Promise<AxiosResponse["data"] | Error> {
+		try {
+			const response = await this.axiosInstance.request({
+				url: path,
+				method: options.method,
+				data: options.body,
+				headers: options.headers
+			});
+
+			if (response.status === 200) {
+				return response.data;
+			}
+
+			throw new Error(response.data.error);
+		} catch (error) {
+			if(error instanceof AxiosError) {
+				if(error.response.status === 401) {
+					return {
+						status: 401,
+						message: "Você não tem acesso a esse recurso ou sua sessão expirou."
+					};
+				}
+			}
 		}
 	}
 
-	post(path: string, options: {body: object, method?: string, headers?: Headers}) {
-		return this.makeRequest(path, {
-			method: "POST",
-			body: options?.body,
-			headers: options?.headers,
-		});
+	async get(path: string): Promise<AxiosResponse["data"] | Error> {
+		return this.makeRequest(path, { method: "GET" });
+	}
+
+	async post(path: string, options: { body: object, headers?: object }): Promise<AxiosResponse["data"] | Error> {
+		return this.makeRequest(path, { method: "POST", body: options.body, headers: options.headers });
 	}
 }
