@@ -1,11 +1,7 @@
 import styled from "styled-components";
 
-export const Container = styled.div`
-	margin-top: 4rem;
-`;
-
 export const MainContent = styled.div`
-	margin-top: 4rem;
+	margin-bottom: 4rem;
 `;
 
 export const SearchContainer = styled.div`

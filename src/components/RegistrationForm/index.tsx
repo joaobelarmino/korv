@@ -1,5 +1,5 @@
-import React, { useEffect, useState } from "react";
-import { useForm, SubmitHandler, Controller, FieldValues } from "react-hook-form";
+import React, { useState } from "react";
+import { useForm, SubmitHandler, Controller } from "react-hook-form";
 
 import { Title, SForm, Container, SelectBox } from "./styles";
 import { ModalFooter } from "../RegionsFilter/styles";
@@ -52,7 +52,7 @@ const RegistrationForm = ({ userInfo, isEditing, handleCloseModal }: IRegistrati
 			setIsLoading(true);
 
 			const usersService = new UsersService(auth.token);
-			const { status, message }= await usersService.createUser(userName, userEmail, "3145", userRole);
+			const { status, message } = await usersService.createUser(userName, userEmail, "3145", userRole);
 
 			handleToastResponse({status, message});
 		} catch(error) {

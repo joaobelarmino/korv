@@ -10,10 +10,11 @@ import {ReactComponent as NoDataFound} from "../../assets/imgs/no-data-found.svg
 import { IUsers } from "../../pages/Users/types";
 
 interface UsersGridProps {
-	users: IUsers[]
+	users: IUsers[],
+	isLoading: boolean
 }
 
-const UsersGrid = ({users}: UsersGridProps) => {
+const UsersGrid = ({users, isLoading}: UsersGridProps) => {
 	const [currentEditingUser, setCurrentEditingUser] = useState<IUsers>();
 	const [isModalVisible, setIsModalVisible] = useState<boolean>(false);
 
@@ -27,9 +28,9 @@ const UsersGrid = ({users}: UsersGridProps) => {
 	}
 
 	return (
-		!users.length ? (
+		!users.length && !isLoading ? (
 			<NoDataContainer>
-				<span>Não encontramos usuários correspondentes.</span>
+				<span>Não encontramos usuários para serem listados.</span>
 				<NoDataFound/>
 			</NoDataContainer>
 		): (
