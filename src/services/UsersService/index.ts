@@ -10,7 +10,7 @@ class UsersService {
 	}
 
 	async getUsers() {
-		return fetch("/usersMock.json").then((data) => data.json());
+		return this.httpClient.get("/users");
 	}
 
 	async createUser(name: string, email: string, password = "123", roles: string) {

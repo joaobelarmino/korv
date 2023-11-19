@@ -31,7 +31,7 @@ export const UserCard = styled.div`
 	display: flex;
 	width: 100%;
 	max-width: 100%;
-	height: 96px;
+	height: fit-content;
 	padding: 1rem;
 	border: 2px solid ${({ theme }) => theme.colors.primary.light};
 	background-color: ${({ theme }) => theme.colors.primary.lighter};
@@ -71,12 +71,20 @@ export const UserName = styled.span`
 	font-weight: 500;
 	line-height: 2rem;
 	color: ${({ theme }) => theme.colors.dark.black};
+	max-width: 200px;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	text-wrap: nowrap;
 `;
 
 export const UserEmail = styled.span`
 	font-size: 1rem;
 	line-height: 1.5rem;
 	color: ${({ theme }) => theme.colors.dark.black};
+	max-width: 200px;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	text-wrap: nowrap;
 `;
 
 export const UserRole = styled.span`

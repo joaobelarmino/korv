@@ -3,5 +3,8 @@ export interface IUsers {
 	name: string,
 	email: string,
 	roles: string[],
-	profilePic?: string
+	activated: boolean,
+	createdAt?: string | null,
+	lastLoginAt?: string | null,
+	profilePic?: string,
 }
