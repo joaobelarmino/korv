@@ -35,7 +35,7 @@ const Button = ({
 	};
 
 	return (
-		<SButton onClick={onClick} type={type} $variant={variant} $fullWidth={isFullWidth}>
+		<SButton onClick={onClick} type={type} $variant={variant} $fullWidth={isFullWidth} disabled={isLoading}>
 			{isLoading ? (
 				<Lottie options={defaultOptions} height={64} width={64} />
 			) : (

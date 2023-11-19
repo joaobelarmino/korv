@@ -16,7 +16,7 @@ const RegistrationModal = ({handleCloseModal, isVisible, userInfo, isEditing = f
 
 	return (
 		<Modal handleCloseModal={handleCloseModal}>
-			<RegistrationForm userInfo={userInfo} isEditing={isEditing}/>
+			<RegistrationForm userInfo={userInfo} isEditing={isEditing} handleCloseModal={handleCloseModal}/>
 		</Modal>
 	);
 };

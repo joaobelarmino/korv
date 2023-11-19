@@ -1,4 +1,4 @@
-import axios, { AxiosInstance, AxiosRequestConfig, AxiosResponse } from "axios";
+import axios, { AxiosError, AxiosInstance, AxiosResponse } from "axios";
 
 export default class HttpClient {
 	private axiosInstance: AxiosInstance;
@@ -28,7 +28,7 @@ export default class HttpClient {
 		}, error => Promise.reject(error));
 	}
 
-	async makeRequest(path: string, options: { body?: object, method?: string, headers?: object }) {
+	async makeRequest(path: string, options: { body?: object, method?: string, headers?: object }): Promise<AxiosResponse["data"] | Error> {
 		try {
 			const response = await this.axiosInstance.request({
 				url: path,
@@ -43,15 +43,22 @@ export default class HttpClient {
 
 			throw new Error(response.data.error);
 		} catch (error) {
-			throw new Error(error.message);
+			if(error instanceof AxiosError) {
+				if(error.response.status === 401) {
+					return {
+						status: 401,
+						message: "Você não tem acesso a esse recurso ou sua sessão expirou."
+					};
+				}
+			}
 		}
 	}
 
-	async get(path: string) {
+	async get(path: string): Promise<AxiosResponse["data"] | Error> {
 		return this.makeRequest(path, { method: "GET" });
 	}
 
-	post(path: string, options: { body: object, headers?: object }) {
+	async post(path: string, options: { body: object, headers?: object }): Promise<AxiosResponse["data"] | Error> {
 		return this.makeRequest(path, { method: "POST", body: options.body, headers: options.headers });
 	}
 }

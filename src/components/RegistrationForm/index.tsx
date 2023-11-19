@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { useForm, SubmitHandler, Controller, FieldValues } from "react-hook-form";
 
 import { Title, SForm, Container, SelectBox } from "./styles";
@@ -9,12 +9,16 @@ import { IUsers } from "../../pages/Users/types";
 import InputText from "../Layout/InputText";
 import Button from "../Layout/Button";
 import CustomSelect from "../Layout/CustomSelect";
+import ThemedToaster from "../../components/Layout/ThemedToaster";
 import UsersService from "../../services/UsersService";
 import useAuth from "../../hooks/useAuth";
+import toast from "react-hot-toast";
+import useResponseToast from "../../hooks/useResponseToast";
 
 interface IRegistrationFormProps {
 	userInfo?: IUsers;
 	isEditing: boolean;
+	handleCloseModal: () => void;
 }
 
 interface IFormInputs {
@@ -23,7 +27,7 @@ interface IFormInputs {
 	userRole: string
 }
 
-const RegistrationForm = ({ userInfo, isEditing}: IRegistrationFormProps) => {
+const RegistrationForm = ({ userInfo, isEditing, handleCloseModal }: IRegistrationFormProps) => {
 	const { watch, register, formState: { errors }, handleSubmit, control } = useForm<IFormInputs>({
 		defaultValues: {
 			userName: userInfo?.name || "",
@@ -31,6 +35,8 @@ const RegistrationForm = ({ userInfo, isEditing}: IRegistrationFormProps) => {
 			userRole: userInfo?.roles.includes("KORV_ADMIN") ? "KORV_ADMIN" : "EMPLOYEE",
 		}
 	});
+	const { handleToastResponse } = useResponseToast();
+	const [isLoading, setIsLoading] = useState(false);
 	const auth = useAuth();
 
 	const selectOptions = [{
@@ -41,17 +47,32 @@ const RegistrationForm = ({ userInfo, isEditing}: IRegistrationFormProps) => {
 		value: "EMPLOYEE",
 	}];
 
-	async function createUser(userName: string, userEmail: string, userRole: string) {
-		const usersService = new UsersService(auth.token);
-		const response = await usersService.createUser(userName, userEmail, "3145", userRole);
+	async function createUser({userName, userEmail, userRole}: IFormInputs) {
+		try {
+			setIsLoading(true);
 
-		console.log(response);
+			const usersService = new UsersService(auth.token);
+			const { status, message }= await usersService.createUser(userName, userEmail, "3145", userRole);
+
+			handleToastResponse({status, message});
+		} catch(error) {
+			toast.custom((t) => <ThemedToaster
+				type="error"
+				title={"Falha no cadastro"}
+				message={"Houve um erro interno no servidor. Contate a equipe da CTI."}
+				toastConfig={t}
+			/>);
+		} finally {
+			handleCloseModal();
+			setIsLoading(false);
+		}
 	}
 
 	const onSubmit: SubmitHandler<IFormInputs> = async ({userName, userEmail, userRole}: IFormInputs) => {
-		console.log(userEmail, userName, userRole, isEditing);
 		if(!isEditing) {
-			await createUser(userName, userEmail, userRole);
+			await createUser({userName, userEmail, userRole});
+		} else {
+			//TODO: call function to update user.
 		}
 	};
 
@@ -95,7 +116,7 @@ const RegistrationForm = ({ userInfo, isEditing}: IRegistrationFormProps) => {
 					/>
 				</SelectBox>
 				<ModalFooter>
-					<Button type="submit" text="Salvar" isFullWidth  />
+					<Button type="submit" text="Salvar" isLoading={isLoading} isFullWidth />
 				</ModalFooter>
 			</SForm>
 		</Container>

@@ -55,8 +55,8 @@ const RegionsFilter: React.FC = () => {
 		setSelectedCheckboxes(selectedRegions);
 	}, [selectedRegions]);
 
-	const filteredRegions = useMemo(() => regionsList.filter((region) => (
-		region.name.toLowerCase().includes(watch(SEARCH_INPUT_ID)?.toLowerCase() || "")
+	const filteredRegions = useMemo(() => [...regionsList].filter((region) => (
+		region?.name.toLowerCase().includes(watch(SEARCH_INPUT_ID)?.toLowerCase() || "")
 	)), [regionsList, watch(SEARCH_INPUT_ID)]);
 
 	if(!regionsList.length) {
