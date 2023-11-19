@@ -61,4 +61,8 @@ export default class HttpClient {
 	async post(path: string, options: { body: object, headers?: object }): Promise<AxiosResponse["data"] | Error> {
 		return this.makeRequest(path, { method: "POST", body: options.body, headers: options.headers });
 	}
+
+	async put(path: string, options: { body: object, headers?: object }): Promise<AxiosResponse["data"] | Error> {
+		return this.makeRequest(path, { method: "PUT", body: options.body, headers: options.headers});
+	}
 }

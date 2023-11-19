@@ -68,11 +68,42 @@ const RegistrationForm = ({ userInfo, isEditing, handleCloseModal }: IRegistrati
 		}
 	}
 
+	async function updateUser({userName, userEmail, userRole}: IFormInputs) {
+		try {
+			if(!userInfo) {
+				toast.custom((t) => <ThemedToaster
+					type="error"
+					title={"Erro na operação"}
+					message={"Não foi possível obter o ID do usuário informado. Atualize a página e tente novamente."}
+					toastConfig={t}
+				/>);
+
+				return;
+			}
+			setIsLoading(true);
+
+			const usersService = new UsersService(auth.token);
+			const { status, message } = await usersService.updateUser(userInfo.id, userName, userEmail, userRole);
+
+			handleToastResponse({status, message});
+		} catch(error) {
+			toast.custom((t) => <ThemedToaster
+				type="error"
+				title={"Falha no cadastro"}
+				message={"Houve um erro interno no servidor. Contate a equipe da CTI."}
+				toastConfig={t}
+			/>);
+		} finally {
+			handleCloseModal();
+			setIsLoading(false);
+		}
+	}
+
 	const onSubmit: SubmitHandler<IFormInputs> = async ({userName, userEmail, userRole}: IFormInputs) => {
 		if(!isEditing) {
 			await createUser({userName, userEmail, userRole});
 		} else {
-			//TODO: call function to update user.
+			await updateUser({userName, userEmail, userRole});
 		}
 	};
 
