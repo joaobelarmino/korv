@@ -6,7 +6,7 @@ export interface IRegionFilterProvider {
 
 export interface IRegion {
 	name: string,
-	id: string,
+	id: number,
 }
 
 export interface IRegionContext {
@@ -16,4 +16,5 @@ export interface IRegionContext {
 	setSelectedRegions: Dispatch<SetStateAction<string[]>>,
 	handleRemoveFilters: () => void,
 	setFilterParams: (selectedCheckboxes: string[]) => void,
+	isLoading: boolean;
 }

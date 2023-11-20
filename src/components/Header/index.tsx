@@ -75,7 +75,7 @@ const Header: React.FC = () => {
 							<UserIcon />
 							<LabelItem>Administrar usuários</LabelItem>
 						</MenuItem>
-						<MenuItem to="/regioes">
+						<MenuItem to="/regions">
 							<UserIcon />
 							<LabelItem>Administrar regiões</LabelItem>
 						</MenuItem>

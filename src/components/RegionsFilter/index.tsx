@@ -109,7 +109,7 @@ const RegionsFilter: React.FC = () => {
 													isChecked = filtersApplied.includes(`${id}`);
 												}
 
-												return <Checkbox key={id} id={id} label={name} defaultChecked={isChecked} onChange={() => handleSelectedCheckbox(id)} />;
+												return <Checkbox key={id} id={`${id}`} label={name} defaultChecked={isChecked} onChange={() => handleSelectedCheckbox(`${id}`)} />;
 											})
 										)}
 									</ModalGrid>
