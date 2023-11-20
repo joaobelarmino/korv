@@ -1,6 +1,10 @@
 export interface IRoomCardStatus {
-	statuses: {
-		type: "eletricity" | "lock",
-		enabled: boolean
+	sensors: {
+		id: number,
+		type: "eletric" | "lock",
+		status: boolean
+		name: string,
+		isActivated: boolean,
+		localId: number,
 	}[]
 }
