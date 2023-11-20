@@ -4,10 +4,10 @@ import { Container, Heading, Text } from "./styles";
 
 interface RoomCardInfoProps {
 	roomName: string,
-	blockName: string,
+	blockName?: string,
 }
 
-const RoomCardInfo = ({roomName, blockName}: RoomCardInfoProps) => {
+const RoomCardInfo = ({roomName, blockName = ""}: RoomCardInfoProps) => {
 	return <Container>
 		<Heading>{roomName}</Heading>
 		<Text>{blockName}</Text>

@@ -74,6 +74,7 @@ export const Title = styled.h1`
 	font-size: 24px;
 	line-height: 32px;
 	color: ${({ theme }) => theme.colors.dark.black };
+	font-weight: 500;
 `;
 
 export const Message = styled.p`

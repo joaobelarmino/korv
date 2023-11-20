@@ -90,3 +90,32 @@ export const SeeMore = styled.button`
 		width: 100%
 	}
 `;
+
+
+export const NoLocalsToShow = styled.div`
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	width: 100%;
+	gap: 1.5rem;
+
+	svg {
+		width: 30%;
+		height: auto;
+	}
+`;
+
+export const NoDataTitle = styled.h3`
+	font-size: 2rem;
+	line-height: 2.5rem;
+	font-weight: 500;
+	color: ${({ theme }) => theme.colors.dark.black};
+`;
+
+export const NoDataText = styled.span`
+	font-size: 1rem;
+	line-height: 1.5rem;
+	color: ${({ theme }) => theme.colors.dark.black};
+	margin-top: 0.5rem;
+`;

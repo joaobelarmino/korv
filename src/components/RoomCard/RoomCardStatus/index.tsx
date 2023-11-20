@@ -8,15 +8,15 @@ import { ReactComponent as LockOpen } from "../../../assets/imgs/lock-open.svg";
 import { ReactComponent as LockClosed } from "../../../assets/imgs/lock-closed.svg";
 import { IRoomCardStatus } from "./type";
 
-const RoomCardStatus = ({statuses} : IRoomCardStatus) => {
-	const enabledStatus = statuses.filter((status) => status.enabled);
-	const disabledStatus = statuses.filter((status) => !status.enabled);
+const RoomCardStatus = ({sensors} : IRoomCardStatus) => {
+	const enabledStatus = sensors.filter((sensor) => sensor.status);
+	const disabledStatus = sensors.filter((sensor) => !sensor.status);
 
 	return (
 		<Container>
-			{enabledStatus.map((status) => (
-				<ChipOn key={status.type}>
-					{status.type === "eletricity" ? (
+			{enabledStatus.map((sensor) => (
+				<ChipOn key={sensor.type}>
+					{sensor.type === "eletric" ? (
 						<>
 							<EletricityOn aria-description="Eletricity on icon" />
 							<span>Ligada</span>
@@ -30,9 +30,9 @@ const RoomCardStatus = ({statuses} : IRoomCardStatus) => {
 				</ChipOn>
 			))}
 
-			{disabledStatus.map((status) => (
-				<ChipOff key={status.type}>
-					{status.type === "eletricity" ? (
+			{disabledStatus.map((sensor) => (
+				<ChipOff key={sensor.type}>
+					{sensor.type === "eletric" ? (
 						<>
 							<EletricityOff aria-description="Eletricity off icon" />
 							<span>Desligada</span>
