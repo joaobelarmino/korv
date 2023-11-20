@@ -8,6 +8,8 @@ import Home from "./pages/Home";
 import Users from "./pages/Users";
 import Footer from "./components/Footer";
 import ProtectedLayout from "./components/ProtectedLayout";
+import Regions from "./pages/Regions";
+import { RegionFilterProvider } from "./context/RegionsFilterProvider";
 
 const Routes: React.FC = () => {
 	return (
@@ -40,11 +42,17 @@ const Routes: React.FC = () => {
 				}
 			/>
 			<Route
-				path='/regioes'
+				path='/regions'
 				element={
 					<ProtectedLayout adminOnly>
-						{/* TODO: Implement regions page */}
-						<></>
+						<ContainerRoot>
+							<Wrapper>
+								<RegionFilterProvider>
+									<Regions />
+								</RegionFilterProvider>
+							</Wrapper>
+							<Footer />
+						</ContainerRoot>
 					</ProtectedLayout>
 				}
 			/>

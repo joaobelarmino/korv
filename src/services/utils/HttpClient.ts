@@ -65,4 +65,8 @@ export default class HttpClient {
 	async put(path: string, options: { body: object, headers?: object }): Promise<AxiosResponse["data"] | Error> {
 		return this.makeRequest(path, { method: "PUT", body: options.body, headers: options.headers});
 	}
+
+	async delete(path: string): Promise<AxiosResponse["data"] | Error> {
+		return this.makeRequest(path, { method: "DELETE" });
+	}
 }

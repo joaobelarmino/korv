@@ -13,7 +13,7 @@ const Checkbox = (props: ICheckboxProps) => {
 	return (
 		<CheckboxContainer>
 			<SCheckbox type="checkbox" {...props}/>
-			<CheckboxLabel htmlFor={props.id}>{props.label}</CheckboxLabel>
+			<CheckboxLabel htmlFor={`${props.id}`}>{props.label}</CheckboxLabel>
 		</CheckboxContainer>
 	);
 };
