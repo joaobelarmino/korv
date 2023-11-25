@@ -103,6 +103,10 @@ export const NoLocalsToShow = styled.div`
 	svg {
 		width: 30%;
 		height: auto;
+
+		@media screen and (max-width: 767px) {
+			width: 65%;
+		}
 	}
 `;
 
@@ -114,6 +118,7 @@ export const NoDataTitle = styled.h3`
 `;
 
 export const NoDataText = styled.span`
+	display: inline-block;
 	font-size: 1rem;
 	line-height: 1.5rem;
 	color: ${({ theme }) => theme.colors.dark.black};
