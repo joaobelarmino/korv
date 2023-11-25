@@ -35,11 +35,12 @@ const RoomsGeneral: React.FC = () => {
 	const [searchParams] = useSearchParamsState("regionFilter");
 	const [localsArray, setLocalsArray] = useState<LocalsArray[]>([]);
 	const [isLocalsLoading, setIsLocalsLoading] = useState(true);
-	const concludedRooms = localsArray.filter((local) => (local.sensors.every(sensor => !sensor.status)));
-	const pendingRoomsFullArray = localsArray.filter((local) => (local.sensors.some(sensor => sensor.status)));
+	const [filteredLocals, setFilteredLocals] = useState<LocalsArray[]>(localsArray);
+	const concludedRooms = filteredLocals.filter((local) => (local.sensors.every(sensor => !sensor.status)));
+	const pendingRoomsFullArray = filteredLocals.filter((local) => (local.sensors.some(sensor => sensor.status)));
 	const filteredArray = pendingRoomsFullArray.slice(0, maxVisibleRooms);
 	const pendingRooms = filteredArray.filter((local) => (local.sensors.some(sensor => sensor.status)));
-	const { regionsList, isLoading: isRegionsLoading } = useContext(RegionFilterContext);
+	const { regionsList, isLoading: isRegionsLoading, filtersApplied } = useContext(RegionFilterContext);
 	const auth = useAuth();
 	const localesService = new LocalesService(auth.token);
 
@@ -99,6 +100,18 @@ const RoomsGeneral: React.FC = () => {
 	}
 
 	useEffect(() => {
+		if(!filtersApplied) {
+			setFilteredLocals(localsArray);
+		} else {
+			let filteredLocalsAux = [];
+
+			filteredLocalsAux = localsArray.filter(local => filtersApplied.includes(String(local.regionId)));
+
+			setFilteredLocals(filteredLocalsAux);
+		}
+	}, [filtersApplied, localsArray]);
+
+	useEffect(() => {
 		getLocalesData();
 		window.addEventListener("resize", handleResizeEvent);
 
@@ -110,7 +123,7 @@ const RoomsGeneral: React.FC = () => {
 	return (
 		<>
 			<Loading isLoading={(isLocalsLoading || isRegionsLoading)}/>
-			{!isLocalsLoading && !localsArray.length ? (
+			{!isLocalsLoading && !filteredLocals.length ? (
 				<NoLocalsToShow>
 					<div>
 						<NoDataTitle>Não encontramos locais cadastrados a serem exibidos.</NoDataTitle>
