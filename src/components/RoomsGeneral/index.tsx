@@ -22,6 +22,7 @@ import Loading from "../Layout/Loading";
 import ThemedToaster from "../Layout/ThemedToaster";
 
 import LocalesService from "../../services/LocalesService";
+import useResponseToast from "../../hooks/useResponseToast";
 
 interface LocalsArray extends IRoomCardStatus {
 	idLocal: number
@@ -36,13 +37,17 @@ const RoomsGeneral: React.FC = () => {
 	const [localsArray, setLocalsArray] = useState<LocalsArray[]>([]);
 	const [isLocalsLoading, setIsLocalsLoading] = useState(true);
 	const [filteredLocals, setFilteredLocals] = useState<LocalsArray[]>(localsArray);
+	const [isUpdatingSensors, setIsUpdatingSensors] = useState(false);
+	const [lastTimeUpdate, setLastTimeUpdate] = useState<string>();
 	const concludedRooms = filteredLocals.filter((local) => (local.sensors.every(sensor => !sensor.status)));
 	const pendingRoomsFullArray = filteredLocals.filter((local) => (local.sensors.some(sensor => sensor.status)));
 	const filteredArray = pendingRoomsFullArray.slice(0, maxVisibleRooms);
 	const pendingRooms = filteredArray.filter((local) => (local.sensors.some(sensor => sensor.status)));
 	const { regionsList, isLoading: isRegionsLoading, filtersApplied } = useContext(RegionFilterContext);
 	const auth = useAuth();
+	const { handleToastResponse } = useResponseToast();
 	const localesService = new LocalesService(auth.token);
+	const relativeTime = new Intl.RelativeTimeFormat("pt-BR", { style: "long" });
 
 	function getRoomSection (array: LocalsArray[], onlyOn: boolean): React.ReactNode {
 		return array.map((local, index) => {
@@ -99,6 +104,30 @@ const RoomsGeneral: React.FC = () => {
 		}
 	}
 
+	async function updateSensors() {
+		try {
+			setIsUpdatingSensors(true);
+			const { status, message } = await localesService.updateLocalesSensors();
+
+			if(status == 200) {
+				const date = new Date();
+
+				await getLocalesData();
+				setLastTimeUpdate(relativeTime.format(-date.getSeconds(), "seconds"));
+				handleToastResponse({status, message});
+			}
+		} catch(err) {
+			toast.custom((t) => <ThemedToaster
+				type="error"
+				title={"Erro ao atualizar locais"}
+				message={"Houve um erro interno no servidor. Contate a equipe da CTI."}
+				toastConfig={t}
+			/>);
+		} finally {
+			setIsUpdatingSensors(false);
+		}
+	}
+
 	useEffect(() => {
 		if(!filtersApplied) {
 			setFilteredLocals(localsArray);
@@ -148,8 +177,14 @@ const RoomsGeneral: React.FC = () => {
 							</ItemsContainer>
 							<ItemsContainer>
 								{/* {TODO: Remove mock} */}
-								<Small>Última atualização há alguns segundos</Small>
-								<Button icon={SyncIcon} variant="secondary" />
+								{!lastTimeUpdate && <Small>Atualize os sensores dos locais</Small>}
+								{lastTimeUpdate && <Small>Última atualização {lastTimeUpdate}</Small>}
+								<Button
+									icon={SyncIcon}
+									isLoading={isUpdatingSensors}
+									variant="secondary"
+									onClick={updateSensors}
+								/>
 							</ItemsContainer>
 						</RoomsHeader>
 						{!pendingRooms.length && !(isLocalsLoading || isRegionsLoading) ? (
